@@ -1,0 +1,288 @@
+/* Lost&Found/styles/registerAccount.css */
+
+:root {
+    /* Brand Colors - Directly matched with login.css */
+    --wmsu-red: #A40404;
+    --wmsu-red-dark: #800303;
+    --nav-gradient: linear-gradient(135deg, #A40404 0%, #7a0303 100%);
+    --white: #ffffff;
+    --text-dark: #2c3e50;
+    --text-muted: #6c757d;
+    --input-bg: #f8f9fa;
+    --border-color: #dee2e6;
+    --status-danger: #dc3545;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Background Setup */
+    background-image: url('../images/university_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    padding: 40px 20px; /* Added side padding for mobile */
+}
+
+/* Dark Overlay - Identical to Login */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba(164, 4, 4, 0.85) 0%, rgba(44, 62, 80, 0.9) 100%);
+    z-index: 0;
+    backdrop-filter: blur(3px); /* Added blur to match login */
+}
+
+.register-card {
+    position: relative;
+    z-index: 1;
+    /* Glass effect matching login.css */
+    background-color: rgba(255, 255, 255, 0.96); 
+    padding: 40px 50px;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 15px; /* Matched radius */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    border-top: 5px solid var(--wmsu-red);
+    animation: slideUp 0.5s ease-out;
+}
+
+/* Header Section */
+.register-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.register-header h1 {
+    color: var(--wmsu-red);
+    margin: 0 0 10px 0;
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.register-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* Form Grid System */
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-col {
+    flex: 1;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #444; /* Matched login label color */
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-group label span.required {
+    color: var(--status-danger);
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px; /* Matched login input radius */
+    background-color: var(--input-bg);
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--wmsu-red);
+    background-color: var(--white);
+    box-shadow: 0 0 0 3px rgba(164, 4, 4, 0.1); /* Matched focus shadow */
+}
+
+select.form-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 15px;
+}
+
+/* Divider */
+hr {
+    border: 0;
+    height: 1px;
+    background: #e9ecef;
+    margin: 25px 0;
+}
+
+.section-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    display: block;
+}
+
+/* Button - Matched Login Button */
+.btn-register {
+    width: 100%;
+    padding: 14px;
+    background: var(--nav-gradient);
+    color: var(--white);
+    border: none;
+    border-radius: 50px; /* Pill shape */
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 10px;
+}
+
+.btn-register:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(164, 4, 4, 0.3);
+}
+
+.btn-register:active {
+    transform: translateY(0);
+}
+
+/* Links */
+.footer-links {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.footer-links a {
+    color: var(--wmsu-red);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.back-home {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+.back-home:hover {
+    color: var(--text-dark);
+}
+
+/* Alerts */
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #f5c6cb;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.field-error {
+    color: var(--status-danger);
+    font-size: 0.8rem;
+    margin-top: 5px;
+    display: block;
+    margin-left: 5px;
+}
+
+/* Animation */
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .register-card {
+        padding: 30px 20px;
+    }
+}
+
+/* ... (keep all your existing code) ... */
+
+/* PASSWORD TOGGLE STYLES */
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+/* Add padding to the right of the input so text doesn't go under the icon */
+.password-container .form-control {
+    padding-right: 45px; 
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%); /* Perfectly center vertically */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10; /* Ensures it stays on top of the input */
+    padding: 5px; /* Increase hit area */
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.toggle-password:hover {
+    background-color: rgba(0,0,0,0.05); /* Subtle hover effect */
+}
+
+.toggle-password svg {
+    stroke: #6c757d; /* Matches var(--text-muted) */
+    transition: stroke 0.2s;
+}
+
+.toggle-password:hover svg {
+    stroke: var(--wmsu-red); /* Highlights color on hover */
+}
+
+/* Hide default browser password toggle (Edge/IE) */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}

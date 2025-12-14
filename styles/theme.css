@@ -1,0 +1,20 @@
+:root {
+    --brand-red-dark: #A40404;  
+    --brand-red-hover: #800303; 
+    
+    --brand-accent-gold: #ffc107;
+    --brand-white: #FFFFFF;
+    --brand-background: #f4f6f9; 
+    --brand-text-dark: #2c3e50;
+    --brand-text-light: #6c757d;
+    --brand-border: #dee2e6;
+    
+    --status-success: #198754;
+    --status-info: #0dcaf0;
+    --status-warning: #fd7e14;
+    --status-danger: #dc3545;
+    --status-blue: #0d6efd;
+    
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+}

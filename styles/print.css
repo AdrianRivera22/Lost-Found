@@ -1,0 +1,146 @@
+
+@media print {
+    
+
+    .container h1,
+    .container .back-link,
+    .claim-button,
+    .print-button,
+    .info-text,
+    .detail-container hr,
+    .detail-container h3,
+    .detail-container p {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    .detail-container, .detail-container * {
+        visibility: visible;
+    }
+    
+    .detail-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin: 0;
+        padding: 20px;
+        width: 100%;
+        border: none;
+        box-shadow: none;
+    }
+
+    .detail-container h2 {
+        visibility: visible;
+        font-size: 28pt;
+        text-align: center;
+        margin-bottom: 25px;
+        color: #000;
+    }
+    
+    .item-photo-detail {
+        visibility: visible;
+        display: block;
+        max-width: 60%;
+        max-height: 400px;
+        margin: 0 auto 20px auto;
+        border: 2px solid #000;
+    }
+
+    .detail-item {
+        visibility: visible;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+    }
+    
+    .detail-item label {
+        visibility: visible;
+        font-weight: bold;
+        font-size: 14pt;
+        color: #333;
+    }
+    
+    .detail-item span {
+        visibility: visible;
+        font-size: 14pt;
+        color: #000;
+    }
+
+    .print-only-footer {
+        visibility: visible;
+        display: block;
+        margin-top: 40px;
+        padding: 15px;
+        border: 2px dashed #000;
+        text-align: center;
+    }
+    
+    .print-only-footer h3,
+    .print-only-footer p {
+        visibility: visible;
+        display: block;
+        color: #000;
+    }
+    .print-only-footer h3 { font-size: 16pt; font-weight: bold; margin-top: 0; }
+    .print-only-footer p { font-size: 14pt; }
+
+
+    .admin-sidebar,
+    .admin-main-content h1,
+    .report-filters,
+    .admin-sidebar *,
+    .admin-main-content h1 *,
+    .report-filters * {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    .admin-main-content,
+    .admin-main-content *,
+    .report-results,
+    .report-results *,
+    .admin-table,
+    .admin-table * {
+        visibility: visible;
+    }
+
+    body, .admin-main-content {
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin: 0;
+        padding: 20px;
+        width: 100%;
+        border: none;
+        box-shadow: none;
+        background: #fff;
+        color: #000;
+        font-family: Arial, sans-serif;
+    }
+
+    .print-only-title {
+        display: block;
+        visibility: visible;
+        font-size: 18pt;
+        text-align: center;
+        margin: 0 0 20px 0;
+        color: #000;
+    }
+
+    .admin-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 10pt; 
+    }
+    .admin-table th, .admin-table td {
+        border: 1px solid #000 !important; 
+        padding: 5px 8px;
+        color: #000;
+    }
+    .admin-table th {
+        background-color: #eee !important;
+    }
+    .no-data {
+        border: 1px solid #000;
+    }
+}

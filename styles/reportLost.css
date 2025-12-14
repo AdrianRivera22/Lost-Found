@@ -1,0 +1,294 @@
+/* Lost&Found/styles/reportLost.css */
+
+:root {
+    /* Brand Colors */
+    --wmsu-red: #A40404;
+    --wmsu-red-dark: #800303;
+    --wmsu-accent: #FFC107;
+    
+    /* Gradients */
+    --nav-gradient: linear-gradient(135deg, #A40404 0%, #7a0303 100%);
+    
+    /* Neutrals */
+    --white: #ffffff;
+    --off-white: #f8f9fa;
+    --text-dark: #2c3e50;
+    --text-muted: #6c757d;
+    --border-color: #dee2e6;
+    
+    /* Status Colors */
+    --status-danger: #dc3545;
+    
+    /* Shadows */
+    --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--off-white);
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+    /* Background Image with Overlay */
+    background-image: url('../images/university_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+/* Dark Overlay */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(180deg, 
+        rgba(0, 0, 0, 0.7) 0%, 
+        rgba(255, 255, 255, 0.9) 300px, 
+        var(--off-white) 100%);
+    z-index: 0;
+}
+
+/* --- Navigation (Consistent with Landing Page) --- */
+.wmsu-navbar {
+    background: var(--nav-gradient);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 10;
+}
+
+.brand-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.brand-logo {
+    width: 45px;
+    height: 45px;
+    background-color: var(--white);
+    border-radius: 50%;
+    object-fit: contain;
+    border: 2px solid rgba(255,255,255,0.3);
+    padding: 1px;
+}
+
+.brand-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-family: 'Times New Roman', serif;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.btn-nav-back {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 8px 20px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-nav-back:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: var(--white);
+}
+
+/* --- Main Container --- */
+.main-container {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 40px auto 60px;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-card {
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: var(--card-shadow);
+    border-top: 5px solid var(--wmsu-red);
+    animation: slideUp 0.5s ease-out;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 20px;
+}
+
+.form-header h1 {
+    margin: 0;
+    color: var(--wmsu-red);
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.form-header p {
+    color: var(--text-muted);
+    margin: 5px 0 0;
+}
+
+/* --- Form Styles --- */
+fieldset {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 30px;
+    background-color: #fcfcfc;
+}
+
+legend {
+    font-weight: 700;
+    color: var(--text-dark);
+    padding: 0 10px;
+    font-size: 1.1rem;
+    background: var(--wmsu-red);
+    color: white;
+    border-radius: 4px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-col {
+    flex: 1;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #444;
+    font-size: 0.95rem;
+}
+
+.required {
+    color: var(--status-danger);
+}
+
+input[type="text"],
+input[type="date"],
+select,
+textarea,
+input[type="file"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    background-color: var(--white);
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--wmsu-red);
+    box-shadow: 0 0 0 3px rgba(164, 4, 4, 0.1);
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Custom File Input Look */
+input[type="file"] {
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px dashed #ccc;
+}
+
+/* Button */
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: var(--nav-gradient);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 1px;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(164, 4, 4, 0.3);
+}
+
+/* Alerts */
+.error {
+    color: var(--status-danger);
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: block;
+}
+
+.alert-general {
+    padding: 15px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border-radius: 8px;
+    border: 1px solid #f5c6cb;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.info-box {
+    background-color: #e2f0fb;
+    border-left: 4px solid #007bff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #004085;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .form-card {
+        padding: 20px;
+    }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}

@@ -1,0 +1,513 @@
+/* Lost&Found/styles/myReports.css */
+
+:root {
+    /* Brand Colors */
+    --wmsu-red: #A40404;
+    --wmsu-red-dark: #800303;
+    --wmsu-accent: #FFC107;
+    
+    /* Found Item Colors */
+    --found-dark: #2c3e50;
+    --found-dark-hover: #1a252f;
+    
+    /* Gradients */
+    --nav-gradient: linear-gradient(135deg, #A40404 0%, #7a0303 100%);
+    
+    /* Neutrals */
+    --white: #ffffff;
+    --off-white: #f8f9fa;
+    --text-dark: #2c3e50;
+    --text-muted: #6c757d;
+    
+    /* Effects */
+    --card-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    --hover-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--off-white);
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+    /* Background */
+    background-image: url('../images/university_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Dark Overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(240,240,240,0.95) 100%);
+    z-index: -1;
+}
+
+/* --- Navigation --- */
+.wmsu-navbar {
+    background: var(--nav-gradient);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.brand-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.brand-logo {
+    width: 45px;
+    height: 45px;
+    background-color: var(--white);
+    border-radius: 50%;
+    object-fit: contain;
+    border: 2px solid rgba(255,255,255,0.3);
+    padding: 1px;
+}
+
+.brand-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-family: 'Times New Roman', serif;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.btn-nav-back {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 8px 20px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-nav-back:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: var(--white);
+}
+
+/* [NEW] Profile Button Style */
+.btn-nav-profile {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 8px 20px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 10px;
+}
+
+.btn-nav-profile:hover {
+    background: var(--white);
+    color: var(--wmsu-red);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* --- Main Layout --- */
+.main-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+    flex: 1;
+}
+
+/* --- Dashboard Specific Styles --- */
+.dashboard-welcome {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.dashboard-welcome h2 { 
+    margin-top: 0; 
+    color: var(--wmsu-red);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.section-header {
+    margin: 40px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+    color: var(--text-dark);
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    background: var(--white);
+    border-radius: 12px;
+    color: #888;
+    border: 1px dashed #ccc;
+}
+
+.btn-add-new {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: var(--wmsu-red);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-add-new:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(164, 4, 4, 0.2);
+}
+
+.btn-add-new.found { 
+    background-color: var(--found-dark); 
+}
+
+.btn-add-new.found:hover {
+    box-shadow: 0 4px 10px rgba(44, 62, 80, 0.2);
+}
+
+/* --- Items Grid --- */
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.item-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+/* Lost Item Card Accent */
+.item-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background-color: var(--wmsu-red);
+}
+
+/* Found Item Card Accent */
+.item-card.type-found::before {
+    background-color: var(--found-dark);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.item-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    object-fit: cover;
+    background-color: #f0f0f0;
+    border: 1px solid #eee;
+}
+
+.item-main-info { flex: 1; }
+
+.item-category {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--wmsu-red);
+    font-weight: 700;
+}
+
+.item-card.type-found .item-category { color: var(--found-dark); }
+
+.item-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 2px 0;
+    line-height: 1.3;
+}
+
+.card-body { flex: 1; margin-bottom: 20px; }
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+}
+
+.info-row i { width: 16px; text-align: center; color: var(--text-muted); }
+
+.card-footer {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.status-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+/* Specific Badge Colors */
+.badge-reported { background-color: #ffeeba; color: #856404; }
+.badge-claimed { background-color: #cff4fc; color: #055160; }
+.badge-returned { background-color: #d1e7dd; color: #0f5132; }
+.badge-pending-return { background-color: #e2e3e5; color: #383d41; }
+
+/* --- Footer --- */
+.main-footer {
+    background-color: var(--text-dark);
+    color: #bbb;
+    padding: 30px 0;
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-brand { display: flex; align-items: center; gap: 15px; }
+.footer-brand img { width: 40px; opacity: 0.8; }
+
+/* Responsive Handling */
+@media (max-width: 900px) {
+    .items-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+    .items-grid { grid-template-columns: 1fr; }
+    .dashboard-welcome h2 { font-size: 1.5rem; }
+    .section-header { font-size: 1.2rem; }
+}
+
+/* --- Notifications Section --- */
+.notification-section {
+    background-color: var(--white);
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: var(--card-shadow);
+}
+
+.notif-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #f4f4f4;
+    padding-bottom: 10px;
+}
+
+.notif-header h3 { 
+    margin: 0; 
+    color: var(--wmsu-red); 
+    font-size: 1.2rem; 
+}
+
+.btn-mark-read {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: underline;
+}
+
+.btn-mark-read:hover { color: var(--text-dark); }
+
+.notification-list { list-style: none; padding: 0; margin: 0; }
+
+.notification-item {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.notification-item:last-child { border-bottom: none; }
+
+.notif-icon { color: var(--wmsu-red); margin-top: 3px; }
+
+.notif-content { flex: 1; }
+
+.notif-message { display: block; color: var(--text-dark); margin-bottom: 4px; }
+
+.notif-time { font-size: 0.8rem; color: var(--text-muted); }
+
+.empty-notif { color: var(--text-muted); font-style: italic; }
+
+/* --- Items Ready for Pickup Section --- */
+.pickup-section {
+    background-color: #fff8e1; /* Light yellow warning/action bg */
+    border: 1px solid #ffe082;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.pickup-header {
+    color: #d84315;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-bottom: 2px solid #ffe082;
+    padding-bottom: 10px;
+}
+
+.pickup-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    border: 1px solid #eee;
+    margin-bottom: 15px;
+}
+
+.pickup-item-img {
+    width: 100px; 
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.pickup-details { 
+    flex: 1; 
+    min-width: 250px; 
+}
+
+.pickup-details h4 { 
+    margin: 0 0 5px; 
+    font-size: 1.2rem; 
+    color: var(--text-dark); 
+}
+
+.pickup-details p { 
+    margin: 5px 0; 
+    color: #666; 
+    font-size: 0.95rem; 
+}
+
+.contact-box {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #4caf50;
+    min-width: 250px;
+}
+
+.contact-title { 
+    font-weight: bold; 
+    color: #2e7d32; 
+    margin-bottom: 5px; 
+    display: block; 
+}
+
+.btn-confirm-receipt {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-confirm-receipt:hover { 
+    background-color: #388e3c; 
+}
+
+.warning-text { 
+    color: #d32f2f; 
+    font-weight: 600; 
+    font-size: 0.9rem; 
+    margin-top: 10px; 
+    display: block;
+}

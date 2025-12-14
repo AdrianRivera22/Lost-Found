@@ -1,0 +1,558 @@
+/* Lost&Found/styles/landingpage.css */
+
+:root {
+    /* Brand Colors */
+    --wmsu-red: #A40404;
+    --wmsu-red-dark: #800303;
+    --wmsu-accent: #FFC107; /* Gold/Yellow accent */
+    
+    /* Gradients */
+    --nav-gradient: linear-gradient(135deg, #A40404 0%, #7a0303 100%);
+    
+    /* Neutrals */
+    --white: #ffffff;
+    --off-white: #f8f9fa;
+    --light-gray: #e9ecef;
+    --text-dark: #2c3e50;
+    --text-muted: #6c757d;
+    
+    /* Effects */
+    --card-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    --card-hover-shadow: 0 15px 30px rgba(164, 4, 4, 0.1);
+    --border-radius: 12px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--off-white);
+    color: var(--text-dark);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- 1. University Header (Top Bar) --- */
+.wmsu-navbar {
+    background: var(--nav-gradient);
+    /* Reduced side padding to push content to edges */
+    padding: 15px 3%; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.brand-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--white);
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.brand-container:hover {
+    opacity: 0.9;
+}
+
+.brand-logo {
+    width: 45px;
+    height: 45px;
+    background-color: var(--white);
+    border-radius: 50%;
+    object-fit: contain;
+    border: 2px solid rgba(255,255,255,0.3);
+    padding: 1px;
+}
+
+.brand-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-family: 'Times New Roman', serif;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-nav {
+    padding: 8px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+}
+
+.btn-login {
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.5);
+    background: transparent;
+}
+
+.btn-login:hover {
+    background-color: rgba(255,255,255,0.1);
+    border-color: var(--white);
+}
+
+.btn-register {
+    background-color: var(--white);
+    color: var(--wmsu-red);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-register:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    background-color: #f8f9fa;
+}
+
+/* --- 2. Hero Section --- */
+.hero-section {
+    position: relative;
+    height: 550px; /* Slightly reduced height */
+    background-image: url('../images/university_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--white);
+    margin-bottom: 60px;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(180deg, 
+        rgba(0, 0, 0, 0.7) 0%, 
+        rgba(60, 10, 10, 0.5) 60%,
+        var(--off-white) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px; /* Increased max-width */
+    padding: 0 20px;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    font-weight: 300;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    opacity: 0.9;
+}
+
+.hero-content h2 {
+    font-size: 5rem; /* Larger Title */
+    margin: 5px 0;
+    color: var(--wmsu-accent);
+    font-weight: 800;
+    text-transform: uppercase;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    line-height: 1.1;
+}
+
+.hero-content h3 {
+    font-size: 1.6rem;
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.1);
+    display: inline-block;
+    padding: 8px 30px;
+    border-radius: 50px;
+    backdrop-filter: blur(5px);
+}
+
+/* --- 3. Features Section --- */
+.features-container {
+    /* Increased width coverage */
+    max-width: 1600px;
+    margin: -80px auto 0 auto;
+    padding: 0 30px 60px 30px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 3;
+}
+
+.feature-box {
+    flex: 1;
+    min-width: 250px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 5px solid var(--wmsu-red);
+}
+
+.feature-box:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.feature-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 15px 0 10px;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.feature-desc {
+    font-size: 0.95rem;
+    color: #666;
+    text-align: center;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* --- 4. Dashboard / Items Section --- */
+.dashboard-container {
+    /* Widen the container to occupy more space */
+    max-width: 1600px; 
+    width: 95%; /* Falls back to 95% on smaller screens */
+    margin: 0 auto 60px auto;
+    padding: 0;
+    flex: 1;
+}
+
+.dashboard-header {
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.dashboard-header h2 {
+    color: var(--wmsu-red);
+    font-size: 2.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.dashboard-header::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--wmsu-accent);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Reduced gap to make better use of internal space */
+    gap: 30px; 
+}
+
+.column-header {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* === NEW ITEM CARD STYLE === */
+.item-card {
+    display: flex;
+    align-items: center;
+    background: var(--white);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px; /* Reduced margin */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    transition: all 0.25s ease-out;
+    position: relative;
+    border: 1px solid rgba(0,0,0,0.03);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+/* Hover Effect: Lift up + stronger shadow */
+.item-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* Distinct accents for columns */
+.lost-col .item-card { border-left: 5px solid var(--wmsu-red); }
+.found-col .item-card { border-left: 5px solid #2c3e50; }
+
+.card-image {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    margin-right: 15px;
+    position: relative;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: #f0f0f0;
+}
+
+.card-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0; /* Prevents text overflow issues */
+}
+
+.card-category {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #999;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.card-details strong {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-meta {
+    display: flex;
+    gap: 15px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.card-meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.card-arrow {
+    color: #e0e0e0;
+    font-size: 1.2rem;
+    padding-left: 15px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.item-card:hover .card-arrow {
+    color: var(--wmsu-red);
+    transform: translateX(3px);
+}
+
+/* --- Footer --- */
+.main-footer {
+    background-color: var(--text-dark);
+    color: #bbb;
+    padding: 30px 0;
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+.footer-content {
+    /* Match the dashboard max-width */
+    max-width: 1600px;
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-brand img {
+    width: 40px;
+    opacity: 0.8;
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.8rem;
+}
+
+/* --- Modal Styles --- */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 2000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(3px);
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: 10% auto; 
+    padding: 40px;
+    border: none;
+    width: 90%;
+    max-width: 450px;
+    border-radius: 16px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    animation: slideDown 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.close {
+    color: #ccc;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+.close:hover { color: var(--wmsu-red); }
+
+.modal h2 {
+    color: var(--wmsu-red);
+    margin-top: 0;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.modal p {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-modal {
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.btn-modal-login {
+    background: var(--nav-gradient);
+    color: white;
+    box-shadow: 0 4px 10px rgba(164, 4, 4, 0.3);
+}
+
+.btn-modal-register {
+    background-color: var(--white);
+    color: var(--text-dark);
+    border: 1px solid #ddd;
+}
+
+/* New Buttons for Logout Modal */
+.btn-cancel {
+    background-color: #f1f3f5;
+    color: var(--text-dark);
+}
+.btn-cancel:hover { background-color: #e9ecef; }
+
+.btn-confirm {
+    background-color: var(--wmsu-red);
+    color: white;
+    box-shadow: 0 4px 10px rgba(164, 4, 4, 0.2);
+}
+.btn-confirm:hover { 
+    background-color: var(--wmsu-red-dark);
+    transform: translateY(-2px);
+}
+
+.btn-modal:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+}
+
+/* Animations & Responsive */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (max-width: 900px) {
+    .grid-layout { grid-template-columns: 1fr; }
+    .hero-content h2 { font-size: 3.5rem; }
+    .features-container { margin-top: -50px; }
+    .dashboard-container { width: 90%; }
+}

@@ -1,0 +1,354 @@
+/* Lost&Found/styles/claimItem.css */
+
+:root {
+    /* Brand Colors */
+    --wmsu-red: #A40404;
+    --wmsu-red-dark: #800303;
+    --wmsu-accent: #FFC107;
+    
+    /* Found Item Colors */
+    --found-dark: #2c3e50;
+    --found-dark-hover: #1a252f;
+    
+    /* Gradients */
+    --nav-gradient: linear-gradient(135deg, #A40404 0%, #7a0303 100%);
+    
+    /* Neutrals */
+    --white: #ffffff;
+    --off-white: #f8f9fa;
+    --text-dark: #2c3e50;
+    --text-muted: #6c757d;
+    
+    /* Effects */
+    --card-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    --hover-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--off-white);
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+    /* Background */
+    background-image: url('../images/university_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Dark Overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(240,240,240,0.95) 100%);
+    z-index: -1;
+}
+
+/* --- Navigation --- */
+.wmsu-navbar {
+    background: var(--nav-gradient);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.brand-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.brand-logo {
+    width: 45px;
+    height: 45px;
+    background-color: var(--white);
+    border-radius: 50%;
+    object-fit: contain;
+    border: 2px solid rgba(255,255,255,0.3);
+    padding: 1px;
+}
+
+.brand-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-family: 'Times New Roman', serif;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.btn-nav-back {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 8px 20px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-nav-back:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: var(--white);
+}
+
+/* --- Main Container --- */
+.main-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+    flex: 1;
+}
+
+/* --- Detail Card Styles --- */
+.detail-card {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(255,255,255,0.6);
+    margin-bottom: 40px;
+    border-top: 5px solid var(--found-dark); /* Dark accent for Found items */
+}
+
+.detail-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.detail-image-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+.detail-image-section img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
+    background-color: #f9f9f9;
+}
+
+.detail-info-section {
+    flex: 1.5;
+    min-width: 300px;
+}
+
+.detail-header {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+.detail-title {
+    font-size: 2.2rem;
+    color: var(--text-dark);
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.detail-row {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: baseline;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 10px;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-weight: 700;
+    color: var(--text-muted);
+    width: 140px;
+    flex-shrink: 0;
+    font-size: 0.95rem;
+}
+
+.detail-value {
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 1.05rem;
+    line-height: 1.5;
+}
+
+.status-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.badge-reported { background-color: #fff3cd; color: #856404; }
+.badge-claimed { background-color: #cff4fc; color: #055160; }
+.badge-returned { background-color: #d1e7dd; color: #0f5132; }
+
+/* --- Reporter / Finder Section --- */
+.reporter-section {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 30px;
+    border-left: 4px solid var(--text-dark);
+}
+
+.reporter-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* --- Claim Form Section --- */
+.claim-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #eee;
+}
+
+.claim-form-header {
+    margin-bottom: 20px;
+    color: var(--found-dark);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3rem;
+}
+
+.info-box {
+    background: #e7f1ff;
+    border-left: 4px solid #0d6efd;
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #084298;
+    border-radius: 4px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.claim-form textarea {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 15px;
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
+    margin-bottom: 5px;
+    background: #fdfdfd;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.claim-form textarea:focus {
+    border-color: var(--found-dark);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+}
+
+.form-hint {
+    font-size: 0.85rem;
+    color: #888;
+    display: block;
+}
+
+.btn-submit-claim {
+    background-color: var(--found-dark);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(44, 62, 80, 0.2);
+}
+
+.btn-submit-claim:hover {
+    background-color: #1a252f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(44, 62, 80, 0.3);
+}
+
+.error-text {
+    color: #dc3545;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: block;
+}
+
+.no-notifications {
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* --- Footer --- */
+.main-footer {
+    background-color: var(--text-dark);
+    color: #bbb;
+    padding: 30px 0;
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-brand img { width: 40px; opacity: 0.8; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .detail-layout { flex-direction: column; gap: 20px; }
+    .detail-image-section, .detail-info-section { min-width: 100%; }
+}
