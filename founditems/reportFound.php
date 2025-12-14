@@ -104,12 +104,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
     <nav class="wmsu-navbar">
-        <a href="../landingpage/index.php" class="brand-container">
+        <a href="../landingpage/userMain.php" class="brand-container">
             <img src="../images/wmsu_logo.jpg" alt="WMSU Logo" class="brand-logo">
             <span class="brand-text">Lost & Found</span>
         </a>
         <div class="nav-buttons">
-            <a href="../landingpage/index.php" class="btn-nav-back">
+            <a href="../landingpage/userMain.php" class="btn-nav-back">
                 <i class="fas fa-arrow-left"></i> Back to Dashboard
             </a>
         </div>
