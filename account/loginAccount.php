@@ -6,7 +6,8 @@ if (isset($_SESSION['user_id'])) {
     if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') {
         header("Location: ../admin/dashboard.php"); 
     } else {
-        header("Location: ../landingpage/index.php"); 
+        // Redirect standard users to the User Dashboard (userMain.php)
+        header("Location: ../landingpage/userMain.php"); 
     }
     exit();
 }
@@ -43,7 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($studentObj->Role === 'admin') {
                 header("Location: ../admin/dashboard.php"); 
             } else {
-                header("Location: ../landingpage/index.php"); 
+                // Redirect standard users to the User Dashboard (userMain.php)
+                header("Location: ../landingpage/userMain.php"); 
             }
             exit();
         } else {
@@ -107,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 Don't have an account? <a href="registerAccount.php">Register Here</a>
             </div>
             
-            <a href="../landingpage/index.php" class="back-home">← Back to Home</a>
+            <a href="../index.php" class="back-home">← Back to Home</a>
         </form>
     </div>
 
