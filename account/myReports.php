@@ -19,9 +19,7 @@ $notifyObj = new Notification();
 $user_id = $_SESSION['user_id'];
 $student_data = $studentObj->getStudentById($user_id);
 
-// --- FORM HANDLING ---
 
-// Mark Notifications Read
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mark_notifications_read'])) {
     $unread_notifs = $notifyObj->getUnreadNotifications($user_id);
     if ($unread_notifs) {
@@ -32,15 +30,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mark_notifications_re
     exit();
 }
 
-// --- DATA FETCHING ---
+
 $my_lost_items = $lostItemObj->viewMyLostReports($user_id);
 $my_found_items = $foundItemObj->viewMyFoundReports($user_id);
 $notifications = $notifyObj->getUnreadNotifications($user_id);
 
-// 1. Items I will be GETTING (Incoming)
+
 $pending_returns = $lostItemObj->getPendingReturnsForUser($user_id);
 
-// 2. Items I will be RETURNING (Outgoing)
+
 $outgoing_returns = $lostItemObj->getOutgoingReturnsForUser($user_id);
 
 ?>
@@ -55,7 +53,6 @@ $outgoing_returns = $lostItemObj->getOutgoingReturnsForUser($user_id);
     <link rel="stylesheet" href="../styles/landingpage.css?v=<?php echo time(); ?>"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Styles for the new sections */
         .section-split-container {
             display: flex;
             flex-direction: column;
@@ -65,14 +62,14 @@ $outgoing_returns = $lostItemObj->getOutgoingReturnsForUser($user_id);
         
         .pickup-section {
             background: #fff;
-            border-left: 5px solid #28a745; /* Green for incoming */
+            border-left: 5px solid #28a745;
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
         .pickup-section.outgoing {
-            border-left-color: #17a2b8; /* Blue for outgoing */
+            border-left-color: #17a2b8;
             background-color: #f0f8ff;
         }
 
@@ -158,7 +155,7 @@ $outgoing_returns = $lostItemObj->getOutgoingReturnsForUser($user_id);
 <body>
 
     <nav class="wmsu-navbar">
-        <a href="../landingpage/index.php" class="brand-container">
+        <a href="../landingpage/userMain.php" class="brand-container">
             <img src="../images/wmsu_logo.jpg" alt="WMSU Logo" class="brand-logo">
             <span class="brand-text">Lost & Found</span>
         </a>
@@ -166,7 +163,7 @@ $outgoing_returns = $lostItemObj->getOutgoingReturnsForUser($user_id);
             <a href="profile.php" class="btn-nav-profile">
                 <i class="fas fa-user"></i> My Profile
             </a>
-            <a href="../landingpage/index.php" class="btn-nav-back">
+            <a href="../landingpage/userMain.php" class="btn-nav-back">
                 <i class="fas fa-home"></i> Home
             </a>
             <button onclick="openLogoutModal()" class="btn-nav btn-register" style="background-color: #dc3545; color: white; border: none; cursor: pointer;">
@@ -178,7 +175,7 @@ $outgoing_returns = $lostItemObj->getOutgoingReturnsForUser($user_id);
     <div class="main-container">
         
         <div class="dashboard-welcome">
-            <h2>Welcome, <?= htmlspecialchars($student_data['First_Name']) ?>!</h2>
+            <h2>STUDENT DASHBOARD</h2>
             <p>Manage your reported items and track their status here.</p>
             <div style="margin-top: 20px; display:flex; gap:15px; justify-content:center;">
                 <a href="../lostitems/reportLost.php" class="btn-add-new"><i class="fas fa-plus"></i> Report Lost Item</a>

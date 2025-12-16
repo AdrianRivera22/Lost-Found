@@ -20,7 +20,7 @@ $is_reporter = false;
 $claim_data = [ "SecurityQuestionAnswers" => "" ];
 $claim_errors = [ "SecurityQuestionAnswers" => "", "general" => "" ];
 
-// UPDATED: Navigation Logic
+
 $back_url = "viewFoundItems.php";
 $back_text = "Back to Found List";
 
@@ -29,8 +29,8 @@ if (isset($_GET['from'])) {
         $back_url = "../account/myReports.php";
         $back_text = "Back to Dashboard";
     } elseif ($_GET['from'] === 'landing') {
-        // MODIFIED: Redirect back to landing page if accessed from there
-        $back_url = "../landingpage/index.php";
+     
+        $back_url = "../landingpage/userMain.php";
         $back_text = "Back to Home";
     }
 }
@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $item_details && !$is_reporter) {
 <body>
 
     <nav class="wmsu-navbar">
-        <a href="../landingpage/index.php" class="brand-container">
+        <a href="../landingpage/userMain.php" class="brand-container">
             <img src="../images/wmsu_logo.jpg" alt="WMSU Logo" class="brand-logo">
             <span class="brand-text">Lost & Found</span>
         </a>

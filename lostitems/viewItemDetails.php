@@ -14,7 +14,7 @@ $item_details = null;
 $error_message = "";
 $success_message = "";
 
-// Navigation Logic
+
 $back_url = "viewLostItems.php";
 $back_text = "Back to List";
 
@@ -23,14 +23,12 @@ if (isset($_GET['from'])) {
         $back_url = "../account/myReports.php";
         $back_text = "Back to Dashboard";
     } elseif ($_GET['from'] === 'landing') {
-        $back_url = "../landingpage/index.php";
+        $back_url = "../landingpage/userMain.php";
         $back_text = "Back to Home";
     }
 }
 
-// --- POST HANDLING ---
 
-// 1. "I Found This" Submission (Original)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_found_this']) && $item_id) {
     $finder_id = $_SESSION['user_id'];
     if (!isset($_FILES['finder_proof']) || $_FILES['finder_proof']['error'] !== UPLOAD_ERR_OK) {
@@ -47,7 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_found_this']) && 
     }
 }
 
-// 2. Finder "Item Returned" Confirmation
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_finder_returned']) && $item_id) {
     if ($lostItemsObj->finderConfirmReturn($item_id, $_SESSION['user_id'])) {
         $success_message = "Great job! You have successfully returned the item.";
@@ -57,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_finder_returned']
     }
 }
 
-// 3. Finder "Cancel Return"
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_finder_cancel']) && $item_id) {
     $reason = $_POST['cancel_reason'] ?? 'Other';
     if ($lostItemsObj->finderCancelReturn($item_id, $_SESSION['user_id'], $reason)) {
@@ -68,7 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_finder_cancel']) 
     }
 }
 
-// 4. OWNER: Confirm Item Received
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_receipt']) && $item_id) {
     if ($lostItemsObj->markItemAsReturned($item_id, $_SESSION['user_id'])) {
         $success_message = "Item marked as RECEIVED. Case closed!";
@@ -78,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_receipt']) &&
     }
 }
 
-// 5. OWNER: Cancel Return Request
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cancel_return']) && $item_id) {
     if ($lostItemsObj->ownerCancelReturn($item_id, $_SESSION['user_id'])) {
         $success_message = "Return request cancelled. Item is now available for others.";
@@ -88,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cancel_return']) && $
     }
 }
 
-// Fetch Item Details
+
 if (!$item_id) {
     $error_message = "Invalid Item ID provided.";
 } elseif ($item_details === null) {
@@ -96,7 +91,7 @@ if (!$item_id) {
     if (!$item_details) $error_message = "Item not found.";
 }
 
-// Role Checks
+
 $is_reporter = ($item_details && $item_details['ReporterUserID'] == $_SESSION['user_id']);
 $is_finder   = ($item_details && $item_details['FinderUserID'] == $_SESSION['user_id']);
 ?>
@@ -110,7 +105,6 @@ $is_finder   = ($item_details && $item_details['FinderUserID'] == $_SESSION['use
     <link rel="stylesheet" href="../styles/viewLostItems.css?v=<?php echo time(); ?>"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Specific styles for Finder View & Owner Actions */
         .contact-card {
             background: #fff;
             border: 1px solid #e0e0e0;
@@ -161,7 +155,6 @@ $is_finder   = ($item_details && $item_details['FinderUserID'] == $_SESSION['use
         }
         .btn-cancel-return:hover { background-color: #c82333; }
         
-        /* Modal Specifics */
         .modal-content { max-width: 450px; }
         .reason-option {
             display: block; padding: 10px; border: 1px solid #ddd; margin-bottom: 8px; border-radius: 6px; cursor: pointer;
@@ -173,7 +166,7 @@ $is_finder   = ($item_details && $item_details['FinderUserID'] == $_SESSION['use
 <body>
 
     <nav class="wmsu-navbar">
-        <a href="../landingpage/index.php" class="brand-container">
+        <a href="../landingpage/userMain.php" class="brand-container">
             <img src="../images/wmsu_logo.jpg" alt="WMSU Logo" class="brand-logo">
             <span class="brand-text">Lost & Found</span>
         </a>

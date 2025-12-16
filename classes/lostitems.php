@@ -217,7 +217,7 @@ class LostItems extends Database {
             if ($item_info['ReporterUserID'] == $finder_user_id) throw new Exception("You cannot mark your own lost item as found."); 
             if ($item_info['ItemStatus'] !== 'Reported') throw new Exception("Item status is not 'Reported'."); 
 
-            // 1. Update ITEM table status
+           
             $sql = "UPDATE ITEM SET ItemStatus = 'Pending Return', FinderUserID = :finder_id WHERE ItemID = :item_id";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':finder_id', $finder_user_id, PDO::PARAM_INT);
@@ -225,14 +225,14 @@ class LostItems extends Database {
             
             if ($stmt->execute() && ($stmt->rowCount() > 0)) {
                 
-                // 2. Update LOST_ITEM table with Proof Photo
+                
                 $sql_proof = "UPDATE LOST_ITEM SET FinderProofPhotoURL = :proof_url WHERE ItemID = :item_id";
                 $stmt_proof = $conn->prepare($sql_proof);
                 $stmt_proof->bindParam(':proof_url', $proof_path);
                 $stmt_proof->bindParam(':item_id', $item_id, PDO::PARAM_INT);
                 $stmt_proof->execute();
 
-                // 3. Notify Owner
+              
                 $notification_message = "Someone has reported finding your lost item: '{$item_name}'. Check your email or wait for Admin contact.";
                 $sql_notify = "INSERT INTO NOTIFICATION (UserID, Message, RelatedItemID) VALUES (:user_id, :message, :item_id)";
                 $stmt_notify = $conn->prepare($sql_notify);
@@ -244,7 +244,7 @@ class LostItems extends Database {
 
                 $conn->commit();
                 
-                // 4. Send Email
+               // magsend email
                 try {
                     $studentObj = new Student();
                     $owner_data = $studentObj->getStudentById($item_info['ReporterUserID']);
@@ -684,7 +684,6 @@ class LostItems extends Database {
          return $this->countLostItemsByStatus('Pending Return');
     }
 
-    // --- FINDER ACTIONS ---
     public function finderConfirmReturn($item_id, $finder_id) {
         $conn = $this->db->connect();
         if (!$conn) return false;

@@ -69,7 +69,6 @@ class Database{
             return null;
         }
 
-        // UPDATED: JOIN users r_st, JOIN users f_st
         $sql = "SELECT 
                     i.ItemID, i.ItemName, i.Category, i.DateReported, i.ItemStatus,
                     i.ReporterUserID,

@@ -1,25 +1,25 @@
-/* Lost&Found/styles/reportFound.css */
+
 
 :root {
-    /* Brand Colors */
+
     --wmsu-red: #A40404;
     --wmsu-red-dark: #800303;
     --wmsu-accent: #FFC107;
     
-    /* Gradients */
+  
     --nav-gradient: linear-gradient(135deg, #A40404 0%, #7a0303 100%);
     
-    /* Neutrals */
+
     --white: #ffffff;
     --off-white: #f8f9fa;
     --text-dark: #2c3e50;
     --text-muted: #6c757d;
     --border-color: #dee2e6;
     
-    /* Status Colors */
+  
     --status-danger: #dc3545;
     
-    /* Shadows */
+   
     --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
@@ -34,7 +34,7 @@ body {
     display: flex;
     flex-direction: column;
     
-    /* Background Image with Overlay */
+  
     background-image: url('../images/university_bg.jpg');
     background-size: cover;
     background-position: center;
@@ -42,7 +42,6 @@ body {
     position: relative;
 }
 
-/* Dark Overlay */
 body::before {
     content: '';
     position: absolute;
@@ -54,7 +53,7 @@ body::before {
     z-index: 0;
 }
 
-/* --- Navigation --- */
+
 .wmsu-navbar {
     background: var(--nav-gradient);
     padding: 15px 5%;
@@ -108,7 +107,7 @@ body::before {
     border-color: var(--white);
 }
 
-/* --- Main Container --- */
+
 .main-container {
     position: relative;
     z-index: 2;
@@ -125,7 +124,7 @@ body::before {
     border-radius: 16px;
     padding: 40px;
     box-shadow: var(--card-shadow);
-    border-top: 5px solid var(--text-dark); /* Dark top border for Found Items */
+    border-top: 5px solid var(--text-dark); 
     animation: slideUp 0.5s ease-out;
 }
 
@@ -149,7 +148,7 @@ body::before {
     margin: 5px 0 0;
 }
 
-/* --- Form Styles --- */
+
 fieldset {
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -224,7 +223,7 @@ input[type="file"] {
     border: 1px dashed #ccc;
 }
 
-/* Button */
+
 .btn-submit {
     display: block;
     width: 100%;
@@ -247,7 +246,7 @@ input[type="file"] {
     background-color: #1a252f;
 }
 
-/* Alerts */
+
 .error {
     color: var(--status-danger);
     font-size: 0.85rem;
@@ -276,7 +275,7 @@ input[type="file"] {
     color: #856404;
 }
 
-/* Responsive */
+
 @media (max-width: 600px) {
     .form-row {
         flex-direction: column;

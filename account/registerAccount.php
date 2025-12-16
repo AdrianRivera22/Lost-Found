@@ -5,14 +5,14 @@ require_once "../classes/MailService.php";
 
 $studentObj = new Student(); 
 
-// Fetch Courses for Dropdown
+
 $courses = $studentObj->getCourses(); 
 if ($courses === null) { 
     $courses = []; 
     $errors["general"] = "Could not load course list from database."; 
 } 
 
-// Initialize Variables
+
 $student = [
     "StudentID" => "", "Last_Name" => "", "First_Name" => "", "Middle_Name" => "",
     "PhoneNo" => "", "Email" => "", "CourseID" => "",
@@ -26,7 +26,7 @@ $errors = [
     "general" => "" 
 ];
 
-// Handle Form Submission
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $student["StudentID"] = trim(htmlspecialchars($_POST["StudentID"] ?? ''));
     $student["Last_Name"] = trim(htmlspecialchars($_POST["Last_Name"] ?? ''));
@@ -38,7 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $student["Password"] = trim($_POST["Password"] ?? ''); 
     $student["ConfirmPassword"] = trim($_POST["ConfirmPassword"] ?? ''); 
 
-    // --- Validation Logic ---
     if (empty($student["StudentID"])) { $errors["StudentID"] = "Student ID is required"; } 
     elseif ($studentObj->isStudentExist($student["StudentID"])) { $errors["StudentID"] = "Student ID already registered"; }
     
@@ -68,12 +67,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!$validCourse && !empty($courses)) $errors["CourseID"] = "Invalid course selected.";
     }
 
-    // --- Verification & Email Sending Logic ---
     if (empty(array_filter($errors))) {
         
         $verification_code = rand(100000, 999999);
 
-        // Store registration data in SESSION
         $_SESSION['registration_data'] = $student;
         $_SESSION['verification_code'] = $verification_code;
 
@@ -81,7 +78,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $fullName = $student["First_Name"] . " " . $student["Last_Name"];
         $subject = "Verify Your Account - WMSU Lost & Found";
 
-        // --- PROFESSIONAL HTML EMAIL TEMPLATE ---
         $body = "
         <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;'>
             <div style='background-color: #A40404; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;'>

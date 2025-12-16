@@ -1,7 +1,6 @@
 <?php
 session_start(); 
 
-// Redirect to User Dashboard if already logged in
 if (isset($_SESSION['user_id'])) {
     header("Location: landingpage/userMain.php");
     exit();
@@ -13,7 +12,7 @@ require_once "classes/founditems.php";
 $lostItemsObj = new LostItems(); 
 $foundItemsObj = new FoundItems(); 
 
-// Fetch Data for Public View
+
 $recent_lost_items = $lostItemsObj->viewActiveLostReports("", "");  
 if ($recent_lost_items === null) $recent_lost_items = []; 
 $recent_lost_items = array_slice($recent_lost_items, 0, 5); 
@@ -77,7 +76,7 @@ $recent_found_items = array_slice($recent_found_items, 0, 5);
              <div class="lost-col">
                 <h3 class="column-header">Lost Items</h3>
                 <?php foreach($recent_lost_items as $item): 
-                    // Path adjusted: removed "../"
+                    
                     $photo = !empty($item["PhotoURL"]) ? htmlspecialchars($item["PhotoURL"]) : "images/placeholder.png";
                 ?>
                     <div class="item-card item-card-trigger" onclick="openLoginModal()">
@@ -100,7 +99,7 @@ $recent_found_items = array_slice($recent_found_items, 0, 5);
              <div class="found-col">
                 <h3 class="column-header">Found Items</h3>
                 <?php foreach($recent_found_items as $item): 
-                     // Path adjusted: removed "../"
+                     
                      $photo = !empty($item["Photo"]) ? htmlspecialchars($item["Photo"]) : "images/placeholder.png";
                 ?>
                     <div class="item-card item-card-trigger" onclick="openLoginModal()">

@@ -1,22 +1,19 @@
-/* Lost&Found/styles/landingpage.css */
 
 :root {
-    /* Brand Colors */
+
     --wmsu-red: #A40404;
     --wmsu-red-dark: #800303;
-    --wmsu-accent: #FFC107; /* Gold/Yellow accent */
+    --wmsu-accent: #FFC107; 
     
-    /* Gradients */
+
     --nav-gradient: linear-gradient(135deg, #A40404 0%, #7a0303 100%);
     
-    /* Neutrals */
+
     --white: #ffffff;
     --off-white: #f8f9fa;
     --light-gray: #e9ecef;
     --text-dark: #2c3e50;
     --text-muted: #6c757d;
-    
-    /* Effects */
     --card-shadow: 0 10px 20px rgba(0,0,0,0.05);
     --card-hover-shadow: 0 15px 30px rgba(164, 4, 4, 0.1);
     --border-radius: 12px;
@@ -34,10 +31,9 @@ body {
     min-height: 100vh;
 }
 
-/* --- 1. University Header (Top Bar) --- */
+
 .wmsu-navbar {
     background: var(--nav-gradient);
-    /* Reduced side padding to push content to edges */
     padding: 15px 3%; 
     display: flex;
     justify-content: space-between;
@@ -122,10 +118,9 @@ body {
     background-color: #f8f9fa;
 }
 
-/* --- 2. Hero Section --- */
 .hero-section {
     position: relative;
-    height: 550px; /* Slightly reduced height */
+    height: 550px; 
     background-image: url('../images/university_bg.jpg');
     background-size: cover;
     background-position: center;
@@ -152,7 +147,7 @@ body {
 .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 1000px; /* Increased max-width */
+    max-width: 1000px; 
     padding: 0 20px;
     animation: fadeInUp 1s ease-out;
 }
@@ -166,7 +161,7 @@ body {
 }
 
 .hero-content h2 {
-    font-size: 5rem; /* Larger Title */
+    font-size: 5rem;
     margin: 5px 0;
     color: var(--wmsu-accent);
     font-weight: 800;
@@ -188,9 +183,8 @@ body {
     backdrop-filter: blur(5px);
 }
 
-/* --- 3. Features Section --- */
+
 .features-container {
-    /* Increased width coverage */
     max-width: 1600px;
     margin: -80px auto 0 auto;
     padding: 0 30px 60px 30px;
@@ -239,11 +233,9 @@ body {
     margin: 0;
 }
 
-/* --- 4. Dashboard / Items Section --- */
 .dashboard-container {
-    /* Widen the container to occupy more space */
     max-width: 1600px; 
-    width: 95%; /* Falls back to 95% on smaller screens */
+    width: 95%; 
     margin: 0 auto 60px auto;
     padding: 0;
     flex: 1;
@@ -279,7 +271,6 @@ body {
 .grid-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* Reduced gap to make better use of internal space */
     gap: 30px; 
 }
 
@@ -293,14 +284,13 @@ body {
     gap: 10px;
 }
 
-/* === NEW ITEM CARD STYLE === */
 .item-card {
     display: flex;
     align-items: center;
     background: var(--white);
     border-radius: 12px;
     padding: 15px;
-    margin-bottom: 15px; /* Reduced margin */
+    margin-bottom: 15px; 
     box-shadow: 0 4px 10px rgba(0,0,0,0.03);
     transition: all 0.25s ease-out;
     position: relative;
@@ -309,13 +299,12 @@ body {
     overflow: hidden;
 }
 
-/* Hover Effect: Lift up + stronger shadow */
+
 .item-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
-/* Distinct accents for columns */
 .lost-col .item-card { border-left: 5px solid var(--wmsu-red); }
 .found-col .item-card { border-left: 5px solid #2c3e50; }
 
@@ -341,7 +330,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-width: 0; /* Prevents text overflow issues */
+    min-width: 0;
 }
 
 .card-category {
@@ -388,7 +377,7 @@ body {
     transform: translateX(3px);
 }
 
-/* --- Footer --- */
+
 .main-footer {
     background-color: var(--text-dark);
     color: #bbb;
@@ -398,7 +387,7 @@ body {
 }
 
 .footer-content {
-    /* Match the dashboard max-width */
+
     max-width: 1600px;
     width: 95%;
     margin: 0 auto;
@@ -428,7 +417,6 @@ body {
     font-size: 0.8rem;
 }
 
-/* --- Modal Styles --- */
 .modal {
     display: none; 
     position: fixed; 
@@ -512,7 +500,6 @@ body {
     border: 1px solid #ddd;
 }
 
-/* New Buttons for Logout Modal */
 .btn-cancel {
     background-color: #f1f3f5;
     color: var(--text-dark);
@@ -534,7 +521,6 @@ body {
     opacity: 0.95;
 }
 
-/* Animations & Responsive */
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }

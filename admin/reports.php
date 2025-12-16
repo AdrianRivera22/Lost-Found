@@ -14,20 +14,20 @@ $lostItemsObj = new LostItems();
 $foundItemsObj = new FoundItems();
 $dbObj = new Database(); 
 
-// --- Initialize Filters ---
+
 $filters = [
     'report_type' => $_GET['report_type'] ?? 'lost_items',
     'status'      => $_GET['status'] ?? '',
     'category'    => $_GET['category'] ?? '',
-    'date_start'  => $_GET['date_start'] ?? date('Y-m-01'), // Default to start of current month
-    'date_end'    => $_GET['date_end'] ?? date('Y-m-d')      // Default to today
+    'date_start'  => $_GET['date_start'] ?? date('Y-m-01'), 
+    'date_end'    => $_GET['date_end'] ?? date('Y-m-d')      
 ];
 
 $data = null;
 $page_title = "Reports";
 $report_summary = "";
 
-// --- Fetch Data Based on Report Type ---
+
 switch ($filters['report_type']) {
     case 'returned_items':
         $page_title = "Returned Items Report";
@@ -36,8 +36,6 @@ switch ($filters['report_type']) {
     case 'found_items':
         $page_title = "Found Items Report";
         $data = $foundItemsObj->viewAllFoundReports($filters['search'] ?? '', $filters['category'], $filters['status']);
-        // Date filtering for Found Items (if not built into the class method, we filter manually or adjust query)
-        // For this example, we assume the class method handles it or we filter the array:
         if (!empty($data) && ($filters['date_start'] || $filters['date_end'])) {
             $data = array_filter($data, function($item) use ($filters) {
                 $d = date('Y-m-d', strtotime($item['DateFound']));
@@ -66,7 +64,6 @@ $total_records = $data ? count($data) : 0;
     <link rel="stylesheet" href="../styles/print.css" media="print">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Local specific styles for reports page */
         .summary-card {
             background: #fff;
             padding: 20px;
@@ -82,7 +79,6 @@ $total_records = $data ? count($data) : 0;
         .summary-info p { margin: 0; color: #666; font-size: 0.9rem; }
         .summary-icon { font-size: 2.5rem; color: #ddd; }
         
-        /* Ensure form lays out horizontally */
         .report-form {
             display: flex;
             flex-wrap: wrap;
@@ -162,8 +158,11 @@ $total_records = $data ? count($data) : 0;
                 
                 <div class="filter-actions">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-filter"></i> Filter</button>
+                    
                     <?php if (!empty($data)): ?>
-                        <button type="button" class="btn btn-secondary" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
+                        <a href="print_report.php?<?= http_build_query($_GET) ?>" target="_blank" class="btn btn-secondary">
+                            <i class="fas fa-print"></i> Print Report
+                        </a>
                     <?php endif; ?>
                 </div>
             </form>

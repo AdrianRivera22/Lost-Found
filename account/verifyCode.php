@@ -151,20 +151,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         const form = document.getElementById('otpForm');
 
         inputs.forEach((input, index) => {
-            // 1. Move to next box on input
             input.addEventListener('input', (e) => {
-                // Ensure only numbers
+            
                 input.value = input.value.replace(/[^0-9]/g, '');
 
                 if (input.value.length === 1) {
-                    // Move focus to next input if it exists
+                   
                     if (index < inputs.length - 1) {
                         inputs[index + 1].focus();
                     }
                 }
             });
 
-            // 2. Handle Backspace (move to previous box)
+    
             input.addEventListener('keydown', (e) => {
                 if (e.key === 'Backspace' && input.value === '') {
                     if (index > 0) {
@@ -173,7 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             });
 
-            // 3. Handle Paste (allow pasting full code)
+       
             input.addEventListener('paste', (e) => {
                 e.preventDefault();
                 const pasteData = e.clipboardData.getData('text').slice(0, 6).split('');
@@ -181,20 +180,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     pasteData.forEach((char, i) => {
                         if (inputs[i]) inputs[i].value = char;
                     });
-                    // Focus the last filled input
+           
                     const lastIndex = Math.min(pasteData.length, inputs.length) - 1;
                     inputs[lastIndex].focus();
                 }
             });
         });
 
-        // 4. Before Submit: Combine all boxes into the hidden input
+
         form.addEventListener('submit', (e) => {
             let code = '';
             inputs.forEach(input => {
                 code += input.value;
             });
-            finalCode.value = code; // Set the hidden input value
+            finalCode.value = code;
         });
     </script>
 

@@ -18,7 +18,7 @@ $dbObj = new Database();
 
 $message = ""; 
 
-// --- POST HANDLING ---
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? null;
     $claim_id = filter_input(INPUT_POST, 'claim_id', FILTER_VALIDATE_INT);
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $message = "<div class='alert alert-error'><i class='fas fa-exclamation-triangle'></i> Failed to update claim status.</div>";
         }
     }
-    // HANDLE ACCEPT REQUEST
+
     elseif ($action === 'mark_accepted' && $item_id) {
         if ($lostItemsObj->updateItemStatus($item_id, 'Accepted')) { 
              $message = "<div class='alert alert-success'><i class='fas fa-check-circle'></i> Request Accepted. Item #{$item_id} marked as 'Accepted'. Waiting for owner to confirm receipt.</div>";
@@ -61,7 +61,6 @@ if (isset($_SESSION['flash_message'])) {
     unset($_SESSION['flash_message']);
 }
 
-// --- DATA FETCHING ---
 $view = $_GET['view'] ?? 'pending_claims'; 
 $data = null; 
 $page_title = "Admin Dashboard"; 
@@ -79,7 +78,6 @@ $kpi_total_returned = $dbObj->countItemsByStatus('Returned');
 $kpi_common_category_data = $lostItemsObj->getMostCommonLostCategory();
 $kpi_common_category = ($kpi_common_category_data && $kpi_common_category_data['ItemCount'] > 0) ? $kpi_common_category_data['Category'] : 'N/A';
 
-// --- VIEW LOGIC ---
 switch ($view) {
     case 'pending_returns':
         $page_title = "Pending Returns";
@@ -111,7 +109,6 @@ switch ($view) {
     <link rel="stylesheet" href="../styles/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* --- MODAL STYLES --- */
         .modal {
             display: none; 
             position: fixed; 
@@ -161,7 +158,7 @@ switch ($view) {
         .modal-value { color: #333; }
         .secret-box { background: #fff3cd; padding: 10px; border-radius: 5px; border-left: 4px solid #ffc107; margin-top:10px; }
         
-        /* Accept Modal Specifics */
+       
         #acceptModal .modal-content {
             max-width: 400px;
             margin-top: 15%;
@@ -171,7 +168,7 @@ switch ($view) {
             padding: 30px 20px;
         }
 
-        /* Full Size Image Modal */
+        
         .image-modal {
             display: none; 
             position: fixed; 
@@ -310,7 +307,6 @@ switch ($view) {
                     foreach($data as $item) { 
                         $photo_path = !empty($item["PhotoURL"]) ? "../" . htmlspecialchars($item["PhotoURL"]) : "../images/placeholder.png";
                         
-                        // Data attributes
                         $itemNameSafe = htmlspecialchars($item['ItemName']);
                         $itemDescSafe = htmlspecialchars($item['Description']);
                         $proofTypeSafe = htmlspecialchars($item['ProofType'] ?? 'Not set');
@@ -330,7 +326,7 @@ switch ($view) {
 
                         echo "<div class='action-buttons' style='margin-top:25px; border-top:1px solid #eee; padding-top:20px;'>";
                         
-                        // View Details Button
+                        // View dETAILS Button
                         echo "<button type='button' class='btn btn-outline view-details-btn' 
                                 data-id='".$item['ItemID']."' 
                                 data-name='".$itemNameSafe."' 
@@ -341,12 +337,12 @@ switch ($view) {
                                 <i class='fas fa-eye'></i> View Security & Proof
                               </button>";
 
-                        // Accept Request Button
+                        // Accept button
                         echo "<button type='button' class='btn btn-info' onclick=\"openAcceptModal('".$item['ItemID']."')\">
                                 <i class='fas fa-check'></i> Accept Request
                               </button>";
 
-                        // Delete Button
+                        // delete Button
                         echo "<form action='' method='post' onsubmit=\"return confirm('DELETE Item?')\" style='display:inline;'><input type='hidden' name='item_id' value='".$item['ItemID']."'><input type='hidden' name='action' value='delete_item'><button type='submit' class='btn btn-secondary'><i class='fas fa-trash'></i> Delete</button></form>";
                         echo "</div></div>";
                     }
@@ -498,7 +494,6 @@ switch ($view) {
     </main> 
 
     <script>
-        // --- References ---
         const detailsModal = document.getElementById('detailsModal');
         const imgModal = document.getElementById('imageModal');
         const acceptModal = document.getElementById('acceptModal');

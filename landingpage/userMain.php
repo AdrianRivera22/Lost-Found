@@ -1,9 +1,8 @@
 <?php
 session_start(); 
 
-// Enforce Login
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../index.php"); // Redirect to root landing page
+    header("Location: ../index.php");
     exit();
 }
 
@@ -15,7 +14,7 @@ $lostItemsObj = new LostItems();
 $foundItemsObj = new FoundItems(); 
 $studentObj = new Student(); 
 
-// Fetch Data for Dashboard
+
 $recent_lost_items = $lostItemsObj->viewActiveLostReports("", "");  
 if ($recent_lost_items === null) $recent_lost_items = []; 
 $recent_lost_items = array_slice($recent_lost_items, 0, 5); 
@@ -42,7 +41,7 @@ if ($student_data) {
 <body>
 
     <nav class="wmsu-navbar">
-        <a href="../index.php" class="brand-container">
+        <a href="../landingpage/userMain.php" class="brand-container">
             <img src="../images/wmsu_logo.jpg" alt="WMSU Logo" class="brand-logo">
             <span class="brand-text">Lost & Found</span>
         </a>

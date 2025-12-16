@@ -7,22 +7,22 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 require_once "../classes/Student.php";
-require_once "../classes/MailService.php"; // Include MailService
+require_once "../classes/MailService.php"; 
 
 $studentObj = new Student();
 $mailService = new MailService();
 
 $user_id = $_SESSION['user_id'];
-$student_data = $studentObj->getStudentById($user_id); // Fetch data early for email/name
+$student_data = $studentObj->getStudentById($user_id); 
 
 $message = "";
 $message_type = "";
-$showVerifyModal = false; // Controls the OTP Modal
+$showVerifyModal = false; 
 
-// Handle Form Submissions
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    // --- 1. UPDATE PHONE NUMBER ---
+
     if (isset($_POST['update_phone'])) {
         $new_phone = trim(htmlspecialchars($_POST['phone']));
         
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($studentObj->updateContactNumber($user_id, $new_phone)) {
                 $message = "Contact number updated successfully!";
                 $message_type = "success";
-                // Refresh data
+                
                 $student_data = $studentObj->getStudentById($user_id);
             } else {
                 $message = "Failed to update contact number.";
@@ -42,18 +42,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // --- 2. REQUEST PASSWORD CHANGE (Step 1) ---
+
     if (isset($_POST['request_password_change'])) {
         $current_pass = $_POST['current_password'];
         $new_pass     = $_POST['new_password'];
         $confirm_pass = $_POST['confirm_password'];
 
-        // Verify Old Password
+
         if (!$studentObj->verifyCurrentPassword($user_id, $current_pass)) {
             $message = "Current password is incorrect.";
             $message_type = "error";
         } 
-        // Validate New Password
+
         elseif (strlen($new_pass) < 8) {
             $message = "New password must be at least 8 characters.";
             $message_type = "error";
@@ -62,20 +62,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $message = "New passwords do not match.";
             $message_type = "error";
         } 
-        // Validation Passed: Generate OTP & Send Email
+ 
         else {
             $otp = rand(100000, 999999);
             
-            // Store sensitive data in session temporarily
             $_SESSION['temp_new_password'] = $new_pass;
             $_SESSION['profile_otp'] = $otp;
-            $_SESSION['profile_otp_expiry'] = time() + 300; // 5 mins expiry
+            $_SESSION['profile_otp_expiry'] = time() + 300; 
             
-            // Send Email
+            
             $fullName = $student_data['First_Name'] . " " . $student_data['Last_Name'];
             $subject = "Verify Password Change - WMSU Lost & Found";
 
-            // --- PROFESSIONAL EMAIL TEMPLATE START ---
             $body = "
             <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;'>
                 <div style='background-color: #A40404; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;'>
@@ -99,10 +97,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <p>&copy; " . date("Y") . " WMSU Lost & Found. All rights reserved.</p>
                 </div>
             </div>";
-            // --- PROFESSIONAL EMAIL TEMPLATE END ---
+
 
             if ($mailService->sendEmail($student_data['Email'], $fullName, $subject, $body)) {
-                $showVerifyModal = true; // Trigger Modal
+                $showVerifyModal = true; 
             } else {
                 $message = "Failed to send verification code. Please try again.";
                 $message_type = "error";
@@ -110,20 +108,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // --- 3. VERIFY OTP & UPDATE PASSWORD (Step 2) ---
     if (isset($_POST['verify_otp'])) {
-        $entered_code = trim($_POST['otp_code']); // Hidden input from JS
+        $entered_code = trim($_POST['otp_code']); 
 
-        // Check if OTP exists and hasn't expired
+    
         if (isset($_SESSION['profile_otp']) && (time() < $_SESSION['profile_otp_expiry'])) {
             if ($entered_code == $_SESSION['profile_otp']) {
-                // Correct Code! Update Password
                 $new_pass = $_SESSION['temp_new_password'];
                 
                 if ($studentObj->changePassword($user_id, $new_pass)) {
                     $message = "Password changed successfully!";
                     $message_type = "success";
-                    // Clear session data
                     unset($_SESSION['temp_new_password']);
                     unset($_SESSION['profile_otp']);
                     unset($_SESSION['profile_otp_expiry']);
@@ -134,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 $message = "Invalid verification code.";
                 $message_type = "error";
-                $showVerifyModal = true; // Keep modal open on error
+                $showVerifyModal = true; 
             }
         } else {
             $message = "Verification session expired. Please try again.";
@@ -155,7 +150,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* Force Password Icon Alignment */
         .password-container { position: relative !important; display: block; width: 100%; }
         .password-container input { width: 100% !important; padding-right: 45px !important; box-sizing: border-box !important; height: 45px; }
         .toggle-password { position: absolute !important; top: 50% !important; right: 10px !important; transform: translateY(-50%) !important; cursor: pointer; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 5px; background: transparent; border: none; }
@@ -163,7 +157,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .toggle-password:hover svg { stroke: #A40404; }
         input[type="password"]::-ms-reveal, input[type="password"]::-ms-clear { display: none; }
 
-        /* MODAL STYLES */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px);
@@ -315,12 +308,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
     <script>
-        // Auto-focus logic for OTP boxes
+
         const otpInputs = document.querySelectorAll('.otp-box');
         const finalOtp = document.getElementById('final_otp_code');
         const otpForm = document.getElementById('otpForm');
 
-        otpInputs[0].focus(); // Focus first box
+        otpInputs[0].focus(); 
 
         otpInputs.forEach((input, index) => {
             input.addEventListener('input', () => {

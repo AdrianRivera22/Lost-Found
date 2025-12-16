@@ -31,7 +31,6 @@ class Claim extends Database {
         $conn = $this->db->connect();
         if (!$conn) return null;
 
-        // UPDATED: JOIN users claimant, JOIN users reporter
         $sql = "SELECT 
                     c.ClaimID, c.ClaimDate, c.SecurityQuestionAnswers, c.VerificationStatus,
                     i.ItemID, i.ItemName, i.Description AS ItemDescription, i.Category AS ItemCategory,

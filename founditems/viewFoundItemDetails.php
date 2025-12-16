@@ -14,7 +14,6 @@ $item_details = null;
 $error_message = "";
 $success_message = "";
 
-// Navigation Logic
 $back_url = "viewFoundItems.php";
 $back_text = "Back to List";
 
@@ -26,9 +25,6 @@ if (isset($_GET['from']) && $_GET['from'] === 'dashboard') {
     $back_text = "Back to Home";
 }
 
-// --- POST HANDLING ---
-
-// 1. Claimant: Confirm Receipt
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_receipt']) && $item_id) {
     if ($foundItemsObj->markItemAsReturned($item_id, $_SESSION['user_id'])) {
         $success_message = "Item marked as RECEIVED. Case closed!";
@@ -38,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_receipt']) &&
     }
 }
 
-// 2. Claimant: Cancel Claim
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cancel_claim']) && $item_id) {
     if ($foundItemsObj->claimantCancelClaim($item_id, $_SESSION['user_id'])) {
         $success_message = "Claim cancelled. Item is now available for others.";
@@ -48,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cancel_claim']) && $i
     }
 }
 
-// 3. Finder: Confirm Return
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_finder_returned']) && $item_id) {
     if ($foundItemsObj->finderConfirmReturn($item_id, $_SESSION['user_id'])) {
         $success_message = "Great job! You have successfully returned the item.";
@@ -58,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_finder_returned']
     }
 }
 
-// 4. Finder: Cancel Transaction
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_finder_cancel']) && $item_id) {
     $reason = $_POST['cancel_reason'] ?? 'Other';
     if ($foundItemsObj->finderCancelTransaction($item_id, $_SESSION['user_id'], $reason)) {
@@ -69,7 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_finder_cancel']) 
     }
 }
 
-// Fetch Item Details
 if (!$item_id) {
     $error_message = "Invalid Item ID provided.";
 } elseif ($item_details === null) {
@@ -82,7 +74,6 @@ if (!$item_id) {
     }
 }
 
-// Role Checks
 $is_reporter = ($item_details && $item_details['ReporterUserID'] == $_SESSION['user_id']);
 $is_claimant = ($item_details && isset($item_details['ClaimantUserID']) && $item_details['ClaimantUserID'] == $_SESSION['user_id']);
 ?>
@@ -96,7 +87,6 @@ $is_claimant = ($item_details && isset($item_details['ClaimantUserID']) && $item
     <link rel="stylesheet" href="../styles/viewLostItems.css?v=<?php echo time(); ?>"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Shared Styles for Contact Cards */
         .contact-card {
             background: #fff;
             border: 1px solid #e0e0e0;
@@ -142,7 +132,6 @@ $is_claimant = ($item_details && isset($item_details['ClaimantUserID']) && $item
         }
         .btn-cancel:hover { background-color: #c82333; }
 
-        /* Modal Specifics */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
         .modal-content { background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 90%; max-width: 450px; border-radius: 8px; position: relative; }
         .close-modal { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
@@ -156,7 +145,7 @@ $is_claimant = ($item_details && isset($item_details['ClaimantUserID']) && $item
 <body>
 
     <nav class="wmsu-navbar">
-        <a href="../landingpage/index.php" class="brand-container">
+        <a href="../landingpage/userMain.php" class="brand-container">
             <img src="../images/wmsu_logo.jpg" alt="WMSU Logo" class="brand-logo">
             <span class="brand-text">Lost & Found</span>
         </a>

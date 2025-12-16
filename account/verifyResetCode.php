@@ -1,6 +1,6 @@
 <?php
 session_start();
-// Security: Kick user out if they didn't come from the forgot password page
+
 if (!isset($_SESSION['reset_email']) || !isset($_SESSION['reset_otp'])) {
     header("Location: loginAccount.php");
     exit();
@@ -9,7 +9,7 @@ if (!isset($_SESSION['reset_email']) || !isset($_SESSION['reset_otp'])) {
 $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Combine the 6 hidden inputs or single input into one check
+
     $entered_code = trim($_POST['code'] ?? '');
 
     if ($entered_code == $_SESSION['reset_otp']) {
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../styles/login.css?v=<?php echo time(); ?>">
     
     <style>
-        /* INLINE STYLES FOR THE 6-BOX LAYOUT */
+
         .verify-text { 
             text-align: center; 
             margin-bottom: 25px; 
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             text-align: center;
             font-size: 24px;
             font-weight: bold;
-            color: var(--wmsu-red); /* Uses variable from CSS or fallback */
+            color: var(--wmsu-red);
             border: 2px solid #e0e0e0;
             border-radius: 8px;
             background-color: #fff;
@@ -62,13 +62,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         .otp-box:focus {
-            border-color: #A40404; /* Hardcoded Red fallback */
+            border-color: #A40404;
             outline: none;
             box-shadow: 0 5px 15px rgba(164, 4, 4, 0.15);
             transform: translateY(-2px);
         }
 
-        /* Hide spinners */
+
         .otp-box::-webkit-outer-spin-button,
         .otp-box::-webkit-inner-spin-button {
             -webkit-appearance: none;

@@ -26,7 +26,7 @@ class Student extends Database {
         }
 
         try {
-            // UPDATED: FROM users s
+           
             $sql = "SELECT s.UserID, s.StudentID, s.First_Name, s.Last_Name, s.Middle_Name, 
                            s.Email, s.PhoneNo, s.Role, c.CourseName 
                     FROM users s
@@ -50,7 +50,7 @@ class Student extends Database {
         if (!$conn) return false;
 
         try {
-            // UPDATED: UPDATE users
+            
             $sql = "UPDATE users SET PhoneNo = :phone WHERE UserID = :user_id";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(":phone", $new_phone, PDO::PARAM_STR);
@@ -90,7 +90,7 @@ class Student extends Database {
         }
         try {
             $hashed_password = password_hash($this->Password, PASSWORD_DEFAULT);
-            // UPDATED: INSERT INTO users
+        
             $sql = "INSERT INTO users (StudentID, Last_Name, First_Name, Middle_Name, PhoneNo, Email, CourseID, Password)
                     VALUES (:student_id, :last_name, :first_name, :middle_name, :phone, :email, :course_id, :password)";
             
@@ -124,7 +124,7 @@ class Student extends Database {
             return false;
         }
 
-        // UPDATED: FROM users
+      
         $sql = "SELECT COUNT(*) FROM users WHERE StudentID = :student_id"; 
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":student_id", $studentId, PDO::PARAM_STR);
@@ -142,7 +142,7 @@ class Student extends Database {
         $conn = $this->db->connect();
         if (!$conn) return null;
         
-        // UPDATED: FROM users s
+       
         $sql = "SELECT s.UserID, s.StudentID, s.Last_Name, s.First_Name, s.Middle_Name, 
                        s.PhoneNo, s.Email, s.Role, cr.CourseName 
                 FROM users s
@@ -184,7 +184,7 @@ class Student extends Database {
         }
 
         try {
-            // UPDATED: FROM users
+          
             $sql = "SELECT UserID, StudentID, Password, Role
                     FROM users
                     WHERE Email = :email
@@ -212,7 +212,7 @@ class Student extends Database {
 
     public function isEmailRegistered($email) {
         $conn = $this->db->connect();
-        // UPDATED: FROM users
+
         $sql = "SELECT COUNT(*) FROM users WHERE Email = :email";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":email", $email);
@@ -224,7 +224,7 @@ class Student extends Database {
         $conn = $this->db->connect();
         $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
         
-        // UPDATED: UPDATE users
+
         $sql = "UPDATE users SET Password = :password WHERE Email = :email";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":password", $hashed_password);
@@ -235,7 +235,7 @@ class Student extends Database {
 
     public function verifyCurrentPassword($user_id, $password) {
         $conn = $this->db->connect();
-        // UPDATED: FROM users
+   
         $sql = "SELECT Password FROM users WHERE UserID = :user_id";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":user_id", $user_id);
@@ -252,7 +252,7 @@ class Student extends Database {
         $conn = $this->db->connect();
         $hashed = password_hash($new_password, PASSWORD_DEFAULT);
         
-        // UPDATED: UPDATE users
+ 
         $sql = "UPDATE users SET Password = :password WHERE UserID = :user_id";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":password", $hashed);

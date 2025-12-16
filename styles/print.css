@@ -1,146 +1,151 @@
-
 @media print {
-    
-
-    .container h1,
-    .container .back-link,
+    /* --- HIDE EVERYTHING NOT NEEDED --- */
+    /* .summary-card contains the 'Records Found' text */
+    /* .filters-bar contains the form inputs */
+    .admin-sidebar,
+    .page-header,
+    .filters-bar, 
+    .summary-card,
+    .filter-actions,
+    .logout-section,
+    .btn,
+    .back-link,
     .claim-button,
     .print-button,
     .info-text,
-    .detail-container hr,
-    .detail-container h3,
-    .detail-container p {
+    header, 
+    nav, 
+    footer {
         display: none !important;
         visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
     }
 
-    .detail-container, .detail-container * {
-        visibility: visible;
-    }
-    
-    .detail-container {
-        position: absolute;
-        left: 0;
-        top: 0;
-        margin: 0;
-        padding: 20px;
-        width: 100%;
-        border: none;
-        box-shadow: none;
-    }
-
-    .detail-container h2 {
-        visibility: visible;
-        font-size: 28pt;
-        text-align: center;
-        margin-bottom: 25px;
-        color: #000;
-    }
-    
-    .item-photo-detail {
-        visibility: visible;
-        display: block;
-        max-width: 60%;
-        max-height: 400px;
-        margin: 0 auto 20px auto;
-        border: 2px solid #000;
+    /* --- RESET LAYOUT FOR PRINT --- */
+    body, 
+    .admin-main-content {
+        background: #fff !important;
+        color: #000 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size: 10pt;
+        position: static !important;
+        overflow: visible !important;
     }
 
-    .detail-item {
-        visibility: visible;
-        margin-bottom: 15px;
-        border-bottom: 1px solid #ccc;
-        padding-bottom: 10px;
-    }
-    
-    .detail-item label {
-        visibility: visible;
-        font-weight: bold;
-        font-size: 14pt;
-        color: #333;
-    }
-    
-    .detail-item span {
-        visibility: visible;
-        font-size: 14pt;
-        color: #000;
+    .admin-main-content {
+        display: block !important;
     }
 
-    .print-only-footer {
-        visibility: visible;
-        display: block;
-        margin-top: 40px;
-        padding: 15px;
-        border: 2px dashed #000;
-        text-align: center;
-    }
-    
-    .print-only-footer h3,
-    .print-only-footer p {
-        visibility: visible;
-        display: block;
-        color: #000;
-    }
-    .print-only-footer h3 { font-size: 16pt; font-weight: bold; margin-top: 0; }
-    .print-only-footer p { font-size: 14pt; }
-
-
-    .admin-sidebar,
-    .admin-main-content h1,
-    .report-filters,
-    .admin-sidebar *,
-    .admin-main-content h1 *,
-    .report-filters * {
-        display: none !important;
-        visibility: hidden !important;
-    }
-
-    .admin-main-content,
-    .admin-main-content *,
-    .report-results,
-    .report-results *,
-    .admin-table,
-    .admin-table * {
-        visibility: visible;
-    }
-
-    body, .admin-main-content {
-        position: absolute;
-        left: 0;
-        top: 0;
-        margin: 0;
-        padding: 20px;
-        width: 100%;
-        border: none;
-        box-shadow: none;
-        background: #fff;
-        color: #000;
-        font-family: Arial, sans-serif;
-    }
-
+    /* --- SHOW REPORT TITLE --- */
+    /* This is the title generated specifically for printing in reports.php */
     .print-only-title {
-        display: block;
-        visibility: visible;
-        font-size: 18pt;
+        display: block !important;
         text-align: center;
-        margin: 0 0 20px 0;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #000;
+    }
+    
+    .print-only-title h2 {
+        font-size: 18pt;
+        margin: 0 0 5px 0;
+        text-transform: uppercase;
         color: #000;
+    }
+    
+    .print-only-title p {
+        font-size: 10pt;
+        color: #555;
+        margin: 0;
+        font-style: italic;
+    }
+
+    /* --- TABLE STYLING --- */
+    .report-results {
+        display: block !important;
+        width: 100% !important;
+    }
+
+    .table-container {
+        border: none !important;
+        box-shadow: none !important;
     }
 
     .admin-table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 10pt; 
+        width: 100% !important;
+        border-collapse: collapse !important;
+        border-spacing: 0;
     }
-    .admin-table th, .admin-table td {
-        border: 1px solid #000 !important; 
-        padding: 5px 8px;
+
+    .admin-table th, 
+    .admin-table td {
+        border: 1px solid #000 !important;
+        padding: 6px 8px;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    .admin-table th {
+        background-color: #f0f0f0 !important;
+        color: #000 !important;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 9pt;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .admin-table td {
+        font-size: 10pt;
+    }
+
+    /* Simplify badges for print */
+    .status-badge {
+        background: transparent !important;
+        color: #000 !important;
+        padding: 0;
+        border: none;
+        font-weight: normal;
+    }
+
+    /* Handle empty states */
+    .no-data {
+        border: 1px dashed #000;
+        text-align: center;
+        padding: 20px;
         color: #000;
     }
-    .admin-table th {
-        background-color: #eee !important;
+    
+    .no-data i {
+        display: none;
     }
-    .no-data {
-        border: 1px solid #000;
+
+    /* --- COMPATIBILITY FOR ITEM DETAILS (if needed) --- */
+    .detail-container {
+        position: static;
+        width: 100%;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+    }
+    
+    .item-photo-detail {
+        max-width: 300px;
+        margin: 0 auto 20px;
+        display: block;
+        border: 1px solid #ccc;
+    }
+    
+    .print-only-footer {
+        display: block;
+        margin-top: 30px;
+        text-align: center;
+        font-size: 9pt;
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
     }
 }

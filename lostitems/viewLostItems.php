@@ -3,7 +3,7 @@ session_start();
 require_once "../classes/lostitems.php";
 $lostItemsObj = new LostItems();
 
-// Handle Flash Messages
+
 $flash_message = "";
 $flash_message_type = "";
 if (isset($_SESSION['flash_message'])) {
@@ -19,11 +19,9 @@ if (isset($_SESSION['report_success'])) {
     unset($_SESSION['report_success']);
 }
 
-// Filters
 $search_query = isset($_GET["search"]) ? trim(htmlspecialchars($_GET["search"])) : "";
 $category_filter = isset($_GET["category_filter"]) ? trim(htmlspecialchars($_GET["category_filter"])) : "";
 
-// Fetch Data
 $lost_reports = $lostItemsObj->viewActiveLostReports($search_query, $category_filter);
 $categories = ['Electronics', 'ID/Documents', 'Keys', 'Bags/Clothing', 'Books/Stationery', 'Other'];
 $current_user_id = $_SESSION['user_id'] ?? null;
@@ -102,7 +100,7 @@ $current_user_id = $_SESSION['user_id'] ?? null;
                         $detail_url = "viewItemDetails.php?item_id=" . $report["ItemID"];
                         $found_url = "foundLostItem.php?item_id=" . $report["ItemID"];
                         
-                        // PLACEHOLDER LOGIC
+               
                         $photo = !empty($report["PhotoURL"]) ? "../" . htmlspecialchars($report["PhotoURL"]) : "../images/placeholder.png";
                         
                         $is_own_item = ($current_user_id == $report['ReporterUserID']);

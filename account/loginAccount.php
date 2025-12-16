@@ -1,12 +1,10 @@
 <?php
 session_start();
 
-// Redirect if already logged in
 if (isset($_SESSION['user_id'])) {
     if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') {
         header("Location: ../admin/dashboard.php"); 
     } else {
-        // Redirect standard users to the User Dashboard (userMain.php)
         header("Location: ../landingpage/userMain.php"); 
     }
     exit();
@@ -44,7 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($studentObj->Role === 'admin') {
                 header("Location: ../admin/dashboard.php"); 
             } else {
-                // Redirect standard users to the User Dashboard (userMain.php)
                 header("Location: ../landingpage/userMain.php"); 
             }
             exit();

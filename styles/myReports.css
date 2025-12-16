@@ -1,25 +1,25 @@
-/* Lost&Found/styles/myReports.css */
+
 
 :root {
-    /* Brand Colors */
+
     --wmsu-red: #A40404;
     --wmsu-red-dark: #800303;
     --wmsu-accent: #FFC107;
     
-    /* Found Item Colors */
+ 
     --found-dark: #2c3e50;
     --found-dark-hover: #1a252f;
     
-    /* Gradients */
+
     --nav-gradient: linear-gradient(135deg, #A40404 0%, #7a0303 100%);
     
-    /* Neutrals */
+  
     --white: #ffffff;
     --off-white: #f8f9fa;
     --text-dark: #2c3e50;
     --text-muted: #6c757d;
     
-    /* Effects */
+
     --card-shadow: 0 4px 15px rgba(0,0,0,0.05);
     --hover-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
@@ -35,14 +35,13 @@ body {
     display: flex;
     flex-direction: column;
     
-    /* Background */
     background-image: url('../images/university_bg.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
 
-/* Dark Overlay */
+
 body::before {
     content: '';
     position: fixed;
@@ -51,7 +50,7 @@ body::before {
     z-index: -1;
 }
 
-/* --- Navigation --- */
+
 .wmsu-navbar {
     background: var(--nav-gradient);
     padding: 15px 5%;
@@ -109,13 +108,13 @@ body::before {
     border-color: var(--white);
 }
 
-/* [NEW] Profile Button Style */
+
 .btn-nav-profile {
     color: var(--white);
     text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
-    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    background: rgba(255, 255, 255, 0.2); 
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 8px 20px;
     border-radius: 50px;
@@ -133,7 +132,7 @@ body::before {
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-/* --- Main Layout --- */
+
 .main-container {
     max-width: 1200px;
     margin: 40px auto;
@@ -143,7 +142,7 @@ body::before {
     flex: 1;
 }
 
-/* --- Dashboard Specific Styles --- */
+
 .dashboard-welcome {
     background: var(--white);
     padding: 30px;
@@ -209,7 +208,7 @@ body::before {
     box-shadow: 0 4px 10px rgba(44, 62, 80, 0.2);
 }
 
-/* --- Items Grid --- */
+
 .items-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -235,7 +234,6 @@ body::before {
     box-shadow: var(--hover-shadow);
 }
 
-/* Lost Item Card Accent */
 .item-card::before {
     content: '';
     position: absolute;
@@ -244,7 +242,6 @@ body::before {
     background-color: var(--wmsu-red);
 }
 
-/* Found Item Card Accent */
 .item-card.type-found::before {
     background-color: var(--found-dark);
 }
@@ -316,13 +313,12 @@ body::before {
     display: inline-block;
 }
 
-/* Specific Badge Colors */
 .badge-reported { background-color: #ffeeba; color: #856404; }
 .badge-claimed { background-color: #cff4fc; color: #055160; }
 .badge-returned { background-color: #d1e7dd; color: #0f5132; }
 .badge-pending-return { background-color: #e2e3e5; color: #383d41; }
 
-/* --- Footer --- */
+
 .main-footer {
     background-color: var(--text-dark);
     color: #bbb;
@@ -343,7 +339,7 @@ body::before {
 .footer-brand { display: flex; align-items: center; gap: 15px; }
 .footer-brand img { width: 40px; opacity: 0.8; }
 
-/* Responsive Handling */
+
 @media (max-width: 900px) {
     .items-grid { grid-template-columns: 1fr 1fr; }
 }
@@ -354,7 +350,7 @@ body::before {
     .section-header { font-size: 1.2rem; }
 }
 
-/* --- Notifications Section --- */
+
 .notification-section {
     background-color: var(--white);
     border: 1px solid #e0e0e0;
@@ -412,9 +408,8 @@ body::before {
 
 .empty-notif { color: var(--text-muted); font-style: italic; }
 
-/* --- Items Ready for Pickup Section --- */
 .pickup-section {
-    background-color: #fff8e1; /* Light yellow warning/action bg */
+    background-color: #fff8e1; 
     border: 1px solid #ffe082;
     border-radius: 12px;
     padding: 25px;

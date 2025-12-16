@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($lost_item["SecretDetailType"])) { $errors["SecretDetailType"] = "Proof Type is required."; }
     if (empty($lost_item["SecretDetailValue"])) { $errors["SecretDetailValue"] = "Verification Detail is required."; }
 
-    // Optional Photo Validation
+
     if ($photo_file && $photo_file['error'] == UPLOAD_ERR_OK) {
         if ($photo_file['size'] > 5 * 1024 * 1024) { 
              $errors["Photo"] = "File is too large (Max 5MB).";
@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $lostItemObj->PhotoFile = $photo_file; 
 
             if ($lostItemObj->addLostReport()) {
-                // UPDATED: Removed ID from the success message
+
                 $_SESSION['report_success'] = "✅ Lost item report submitted successfully!";
                 header("Location: viewLostItems.php"); 
                 exit(); 

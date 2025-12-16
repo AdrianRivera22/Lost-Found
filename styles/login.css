@@ -1,7 +1,6 @@
-/* Lost&Found/styles/login.css */
+
 
 :root {
-    /* Brand Colors extracted from landingpage.css */
     --wmsu-red: #A40404;
     --wmsu-red-dark: #800303;
     --nav-gradient: linear-gradient(135deg, #A40404 0%, #7a0303 100%);
@@ -20,8 +19,6 @@ body {
     justify-content: center;
     align-items: center;
     color: var(--text-dark);
-    
-    /* Background setup matching Hero Section */
     background-image: url('../images/university_bg.jpg');
     background-size: cover;
     background-position: center;
@@ -30,7 +27,6 @@ body {
 }
 
 
-/* Dark Overlay for readability */
 body::before {
     content: '';
     position: absolute;
@@ -39,7 +35,7 @@ body::before {
         rgba(0, 0, 0, 0.6) 0%, 
         rgba(164, 4, 4, 0.4) 100%);
     z-index: 0;
-    backdrop-filter: blur(3px); /* Slight blur for premium feel */
+    backdrop-filter: blur(3px); 
 }
 
 .login-card {
@@ -56,7 +52,6 @@ body::before {
     border-top: 5px solid var(--wmsu-red);
 }
 
-/* Logo Styling */
 .brand-logo {
     width: 80px;
     height: 80px;
@@ -82,7 +77,6 @@ body::before {
     font-size: 0.95rem;
 }
 
-/* Form Elements */
 .form-group {
     margin-bottom: 20px;
     text-align: left;
@@ -101,7 +95,7 @@ input[type="password"] {
     width: 100%;
     padding: 12px 15px;
     border: 1px solid #ced4da;
-    border-radius: 8px; /* Rounded corners */
+    border-radius: 8px; 
     box-sizing: border-box;
     font-size: 1rem;
     transition: all 0.3s ease;
@@ -116,7 +110,6 @@ input[type="password"]:focus {
     box-shadow: 0 0 0 3px rgba(164, 4, 4, 0.1);
 }
 
-/* Button Styling matches landing page btn-nav */
 .btn-submit {
     margin-top: 10px;
     padding: 12px;
@@ -124,7 +117,7 @@ input[type="password"]:focus {
     background: var(--nav-gradient);
     color: var(--white);
     border: none;
-    border-radius: 50px; /* Fully rounded pill shape */
+    border-radius: 50px;
     font-size: 1rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -142,7 +135,6 @@ input[type="password"]:focus {
     transform: translateY(0);
 }
 
-/* Links */
 .auth-links {
     margin-top: 25px;
     font-size: 0.9rem;
@@ -170,7 +162,7 @@ input[type="password"]:focus {
     color: var(--text-dark);
 }
 
-/* Errors */
+
 .error-msg {
     color: var(--status-danger);
     font-size: 0.85rem;

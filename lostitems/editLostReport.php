@@ -11,12 +11,12 @@ $lostItemObj = new LostItems();
 
 $item_id = filter_input(INPUT_GET, 'item_id', FILTER_VALIDATE_INT);
 
-// 1. Fetch Existing Data
+
 $item_data = null;
 if ($item_id) {
     $item_data = $lostItemObj->fetchLostItemDetails($item_id);
     
-    // Authorization Check
+    
     if ($item_data && $item_data['ReporterUserID'] != $_SESSION['user_id']) {
         exit("Unauthorized access.");
     }
@@ -34,10 +34,10 @@ $errors = [
 $categories = ['Electronics', 'ID/Documents', 'Keys', 'Bags/Clothing', 'Books/Stationery', 'Other'];
 $proof_types = ['Color', 'Text', 'Accessory', 'Code', 'Other']; 
 
-// 2. Handle Form Submission
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    // Collect Inputs
+    
     $lostItemObj->UserID = $_SESSION['user_id'];
     $lostItemObj->ItemName = trim(htmlspecialchars($_POST["ItemName"]));
     $lostItemObj->Description = trim(htmlspecialchars($_POST["Description"]));
@@ -48,12 +48,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $lostItemObj->SecretDetailValue = trim(htmlspecialchars($_POST["SecretDetailValue"]));
     $lostItemObj->PhotoFile = $_FILES['Photo'] ?? null;
 
-    // Validate
+    
     if (empty($lostItemObj->ItemName)) $errors["ItemName"] = "Item Name is required.";
     if (empty($lostItemObj->Description)) $errors["Description"] = "Description is required.";
     if (strtotime($lostItemObj->DateLost) > time()) $errors["DateLost"] = "Date cannot be in future.";
     
-    // Photo Validation (Only if new file uploaded)
     if ($lostItemObj->PhotoFile && $lostItemObj->PhotoFile['error'] == UPLOAD_ERR_OK) {
         if ($lostItemObj->PhotoFile['size'] > 5 * 1024 * 1024) $errors["Photo"] = "Max size 5MB.";
     }
@@ -84,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <nav class="wmsu-navbar">
-        <a href="../landingpage/index.php" class="brand-container">
+        <a href="../landingpage/userMain.php" class="brand-container">
             <img src="../images/wmsu_logo.jpg" alt="WMSU Logo" class="brand-logo">
             <span class="brand-text">Lost & Found</span>
         </a>

@@ -164,15 +164,13 @@ class FoundItems extends Database {
         return null;
     }
 
-    // --- ACTIONS FOR FOUND ITEMS ---
 
-    // 1. Claimant confirms they received the item
     public function markItemAsReturned($item_id, $user_id) {
         $conn = $this->db->connect();
         if (!$conn) return false;
 
         try {
-            // UPDATED: Added 'Claimed' to the IN clause to match Admin dashboard status
+
             $check_sql = "SELECT i.ItemID 
                           FROM ITEM i
                           LEFT JOIN CLAIM c ON i.ItemID = c.FoundItemID
@@ -185,7 +183,7 @@ class FoundItems extends Database {
             
             if ($stmt->rowCount() === 0) return false;
 
-            // Update status
+    
             $sql_upd = "UPDATE ITEM SET ItemStatus = 'Returned' WHERE ItemID = :item_id";
             $conn->prepare($sql_upd)->execute([':item_id' => $item_id]);
             return true;
@@ -193,7 +191,7 @@ class FoundItems extends Database {
         } catch (PDOException $e) { return false; }
     }
 
-    // 2. Claimant cancels their claim
+
     public function claimantCancelClaim($item_id, $user_id) {
         $conn = $this->db->connect();
         if (!$conn) return false;
@@ -210,15 +208,15 @@ class FoundItems extends Database {
 
             if (!$info) return false;
 
-            // Cancel Claim
+            // Cancel 
             $conn->prepare("UPDATE CLAIM SET VerificationStatus = 'Cancelled' WHERE ClaimID = :cid")
                  ->execute([':cid' => $info['ClaimID']]);
 
-            // Reset Item
+            // Reset
             $conn->prepare("UPDATE ITEM SET ItemStatus = 'Reported' WHERE ItemID = :iid")
                  ->execute([':iid' => $item_id]);
 
-            // Notify Finder (Reporter)
+            // Notify Finder 
             $msg = "Update: The claimant for '{$info['ItemName']}' has cancelled their request. The item is marked as 'Reported' again.";
             $conn->prepare("INSERT INTO NOTIFICATION (UserID, Message, RelatedItemID) VALUES (:uid, :msg, :iid)")
                  ->execute([':uid' => $info['ReporterUserID'], ':msg' => $msg, ':iid' => $item_id]);
@@ -228,12 +226,10 @@ class FoundItems extends Database {
         } catch (Exception $e) { if($conn->inTransaction()) $conn->rollBack(); return false; }
     }
 
-    // 3. Finder (Reporter) confirms return
     public function finderConfirmReturn($item_id, $finder_id) {
         return $this->markItemAsReturned($item_id, $finder_id);
     }
 
-    // 4. Finder (Reporter) cancels transaction (e.g., claimant didn't show up)
     public function finderCancelTransaction($item_id, $finder_id, $reason) {
         $conn = $this->db->connect();
         if (!$conn) return false;
@@ -250,15 +246,15 @@ class FoundItems extends Database {
 
             if (!$info) return false;
 
-            // Cancel Claim
+            // Cancel 
             $conn->prepare("UPDATE CLAIM SET VerificationStatus = 'Cancelled' WHERE ClaimID = :cid")
                  ->execute([':cid' => $info['ClaimID']]);
 
-            // Reset Item
+            // Reset 
             $conn->prepare("UPDATE ITEM SET ItemStatus = 'Reported' WHERE ItemID = :iid")
                  ->execute([':iid' => $item_id]);
 
-            // Notify Claimant
+            // Notify 
             $msg = "Update: The finder has cancelled the return transaction for '{$info['ItemName']}'. Reason: {$reason}.";
             $conn->prepare("INSERT INTO NOTIFICATION (UserID, Message, RelatedItemID) VALUES (:uid, :msg, :iid)")
                  ->execute([':uid' => $info['ClaimantUserID'], ':msg' => $msg, ':iid' => $item_id]);
